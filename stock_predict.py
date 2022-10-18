@@ -1,5 +1,5 @@
 from datetime import date
-from batdata import batdata
+import batdata
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
