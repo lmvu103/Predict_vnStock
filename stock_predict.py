@@ -1,5 +1,4 @@
 from datetime import date
-pip install batdata
 import batdata
 import matplotlib.pyplot as plt
 import numpy as np
