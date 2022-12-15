@@ -1,5 +1,6 @@
 batdata==0.1.0
 colorama==0.4.4
+tensorflow==2.4.1
 keras==2.7.0
 matplotlib==3.5.1
 numpy==1.21.5
