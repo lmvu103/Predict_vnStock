@@ -15,11 +15,9 @@ from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 
-#START = "20100101"
-#TODAY = date.today().strftime('%Y%m%d')
+START = "20100101"
+TODAY = date.today().strftime('%Y%m%d')
 
-START = datetime.datetime(2018,1,1)
-TODAY = datetime.datetime(2021,12,31)
 
 st.write("""
 # Stock Price Prediction App
