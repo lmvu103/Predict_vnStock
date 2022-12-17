@@ -14,6 +14,7 @@ from keras.layers import LSTM
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
+import vnquant.data as dt
 
 START = "20100101"
 TODAY = date.today().strftime('%Y%m%d')
@@ -42,13 +43,19 @@ else:
     n_days = st.slider("Days of prediction:", 30, 365)
     period = n_days
 
-    vnd = batdata.Vnd()
+    #vnd = batdata.Vnd()
     # History data load
-    data = vnd.hist(selected_stock, "close", START, TODAY)
-    jsonData = json.load(data)  # getting data as json
-    dfData = data.df  # getting data as pandas DataFrame
-    dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
-    df = dfData.sort_values(by='tradingDate')
+    #data = vnd.hist(selected_stock, "close", START, TODAY)
+    #jsonData = json.load(data)  # getting data as json
+    #dfData = data.df  # getting data as pandas DataFrame
+    #dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
+    loader = dt.DataLoader(symbols=selected_stock,
+           start=START,
+           end=TODAY,
+           minimal=True,
+           data_source="cafe")
+    data = loader.download()   
+    df = data.sort_values(by='tradingDate')
     df.index = df['tradingDate']
 
     st.subheader("1.1 Raw data")
