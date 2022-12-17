@@ -1,6 +1,6 @@
 git+https://github.com/phamdinhkhanh/vnquant
 colorama
-tensorflow=
+tensorflow
 keras
 matplotlib
 numpy
