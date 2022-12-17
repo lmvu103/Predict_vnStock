@@ -44,9 +44,9 @@ else:
     vnd = batdata.Vnd()
     # History data load
     data = vnd.hist(selected_stock, "close", START, TODAY)
-    jsonData = data.json  # getting data as json
+    #jsonData = data.json  # getting data as json
     dfData = data.df  # getting data as pandas DataFrame
-    #dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
+    dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
     df = dfData.sort_values(by='tradingDate')
     df.index = df['tradingDate']
 
