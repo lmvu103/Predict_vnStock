@@ -16,8 +16,8 @@ import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 import vnquant.data as dt
 
-START = "20100101"
-TODAY = date.today().strftime('%Y%m%d')
+START = "2010-01-01"
+TODAY = date.today().strftime('%Y-%m-%d')
 
 
 st.write("""
