@@ -64,9 +64,11 @@ else:
     st.subheader("1.2 History stock data")
     fig = plt.figure(figsize=(15, 5))
     plt.title('Close Price History ' + selected_stock)
-    plt.scatter(df['date'], df['close'], c='Red', alpha=0.2, cmap="viridis")
+    plt.plot(df['close'])
+    plt.plot(df['close'], label='Close Price')
     plt.xlabel('Date', fontsize=20)
     plt.ylabel('Close Price vnd)', fontsize=20)
+   
 
     st.pyplot(fig)
 
