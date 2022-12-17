@@ -55,8 +55,8 @@ else:
            minimal=True,
            data_source="cafe")
     data = loader.download()   
-    df = data.sort_values(by='tradingDate')
-    df.index = df['tradingDate']
+    df = data.sort_values(by='date')
+    #df.index = df['tradingDate']
 
     st.subheader("1.1 Raw data")
     st.write(df)
@@ -64,7 +64,7 @@ else:
     st.subheader("1.2 History stock data")
     fig = plt.figure(figsize=(15, 5))
     plt.title('Close Price History ' + selected_stock)
-    plt.scatter(df['tradingDate'], df['close'], c='Red', alpha=0.2, cmap="viridis")
+    plt.scatter(df['date'], df['close'], c='Red', alpha=0.2, cmap="viridis")
     plt.xlabel('Date', fontsize=20)
     plt.ylabel('Close Price vnd)', fontsize=20)
 
@@ -75,7 +75,7 @@ else:
     if method_predict == "Prophet":
         st.write('Please choice LSTM')
         df_train = pd.DataFrame()
-        df_train['ds'] = df['tradingDate']
+        df_train['ds'] = df['date']
         df_train['y'] = df['close']
         # m = Prophet()
         # m.fit(df_train)
@@ -93,7 +93,7 @@ else:
         # fig2 = m.plot_components(forecast)
         # st.write(fig2)
     elif method_predict == "LSTM":
-        data = df.filter(['close'])
+        data = df['close']
         data.reset_index()
         dataset = data.values
 
