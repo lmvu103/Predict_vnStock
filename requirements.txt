@@ -10,4 +10,3 @@ streamlit
 matplotlib
 scikit-learn
 altair
-json
