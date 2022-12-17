@@ -1,5 +1,4 @@
 git+https://github.com/phamdinhkhanh/vnquant
-pip
 colorama
 tensorflow
 keras
