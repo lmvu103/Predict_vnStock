@@ -1,5 +1,5 @@
 git+https://github.com/phamdinhkhanh/vnquant
-pip install --upgrade pip
+pip
 colorama
 tensorflow
 keras
