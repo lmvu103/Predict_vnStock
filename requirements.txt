@@ -1,7 +1,6 @@
 git+https://github.com/phamdinhkhanh/vnquant
-batdata
 colorama
-tensorflow==2.0.0
+tensorflow=
 keras
 matplotlib
 numpy
