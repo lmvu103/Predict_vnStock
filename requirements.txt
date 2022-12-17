@@ -1,4 +1,4 @@
-vnquant
+git+https://github.com/phamdinhkhanh/vnquant
 batdata
 colorama
 tensorflow
