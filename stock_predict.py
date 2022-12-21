@@ -60,7 +60,7 @@ else:
 
     st.subheader("1.1 Raw data")
     st.write(df)
-
+    
     st.subheader("1.2 History stock data")
     fig = plt.figure(figsize=(15, 5))
     plt.title('Close Price History ' + selected_stock)
@@ -68,12 +68,11 @@ else:
     plt.plot(df['close'], label='Close Price')
     plt.xlabel('Date', fontsize=20)
     plt.ylabel('Close Price vnd)', fontsize=20)
-   
-
     st.pyplot(fig)
-
     st.subheader("1.3 Predict price stock")
 
+    if (st.button("Press to predict Stock")):   
+        
     if method_predict == "Prophet":
         st.write('Please choice LSTM')
         df_train = pd.DataFrame()
@@ -93,7 +92,7 @@ else:
         #
         # st.write('Forecast Component')
         # fig2 = m.plot_components(forecast)
-        # st.write(fig2)
+        # st.write(fig2)        
     elif method_predict == "LSTM":
         data = df['close']
         data.reset_index()
@@ -229,3 +228,6 @@ else:
         plt.plot(dataset[:])
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+        elsif
+        st.write("Please choose stock's name"
+                 
