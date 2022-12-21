@@ -99,16 +99,13 @@ else:
             dataset = data.values
             st.subheader('Forecast data')
             st.write(dataset)
-
             # Scale the data
             scaler = MinMaxScaler(feature_range=(0, 1))
             scaled_data = scaler.fit_transform(dataset)
-
             # splitting the data in x-train and y_train dataset
             train_size = int(len(scaled_data) * 0.9)
             test_size = len(scaled_data) - train_size
             train, test = scaled_data[0:train_size, :], scaled_data[train_size:len(scaled_data), :]
-
             # reshape into X=t and Y=t+1
             look_back = period
             X_train, Y_train, X_test, Ytest = [], [], [], []
@@ -116,7 +113,6 @@ else:
             X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
             X_test, Y_test = create_data_set(test, look_back)
             X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
-
             # create and fit the LSTM network regressor = Sequential()
             regressor = Sequential()
             regressor.add(LSTM(units=50, return_sequences=True, input_shape=(X_train.shape[1], 1)))
@@ -131,13 +127,11 @@ else:
             history = regressor.fit(X_train, Y_train, epochs=5, batch_size=5, validation_data=(X_test, Y_test), callbacks=[reduce_lr], shuffle=False)
             train_predict = regressor.predict(X_train)
             test_predict = regressor.predict(X_test)
-
             # invert predictions
             train_predict = scaler.inverse_transform(train_predict)
             Y_train = scaler.inverse_transform([Y_train])
             test_predict = scaler.inverse_transform(test_predict)
             Y_test = scaler.inverse_transform([Y_test])
-
             # visualization
             st.subheader("Model loss")
             fig3 = plt.figure(figsize=(15, 5))
@@ -147,10 +141,8 @@ else:
             plt.ylabel('loss')
             plt.xlabel('epochs')
             st.pyplot(fig3)
-
             # creating testing dataset
             test_data = scaled_data[train_size - period:, :]
-
             # creating x_test and y_tets datasets
             x_test = []
             y_test = dataset[train_size:, :]
@@ -163,12 +155,10 @@ else:
                 # get predicted price values
                 predictions = regressor.predict(x_test)
                 predictions = scaler.inverse_transform(predictions)
-
             # plot the data
             train = data[:train_size]
             valid = data[train_size:]
             valid['Predictions'] = predictions
-
             # visualization
             st.subheader("Predict history price stock " + method_predict)
             fig4 = plt.figure(figsize=(15, 5))
@@ -179,29 +169,22 @@ else:
             plt.xlabel('Date', fontsize=20)
             plt.ylabel('Close Price vnd)', fontsize=20)
             st.pyplot(fig4)
-
             dataset_test = data[- period:].values
-
             inputs = dataset_test
             inputs = inputs.reshape(-1, 1)
             inputs = scaler.transform(inputs)
-
             i = 0
             while i < period:
                 X_test = []
                 no_of_sample = len(inputs)
-
                 # Lay du lieu cuoi cung
                 X_test.append(inputs[no_of_sample - period:no_of_sample, 0])
                 X_test = np.array(X_test)
                 X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
-
                 # Du doan gia
                 predicted_stock_price = regressor.predict(X_test)
-
                 # chuyen gia tu khoang (0,1) thanh gia that
                 predicted_stock_price = scaler.inverse_transform(predicted_stock_price)
-
                 dataset_test = np.append(dataset_test, predicted_stock_price[0])
                 inputs = dataset_test
                 inputs = inputs.reshape(-1, 1)
@@ -214,8 +197,7 @@ else:
                 plt.plot(dataset_pre)
                 plt.plot(dataset[:])
                 plt.legend(['Prediction', 'History'], loc='upper right')
-                st.pyplot(fig5)
-    elif
-    st.write("Please choose stock again")
+                st.pyplot(fig5)           
+
 
                  
