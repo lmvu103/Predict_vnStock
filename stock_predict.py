@@ -71,8 +71,7 @@ else:
     st.pyplot(fig)
     st.subheader("1.3 Predict price stock")
 
-    if (st.button("Press to predict Stock")):   
-        
+  if (st.button("Press to predict Stock")):        
     if method_predict == "Prophet":
         st.write('Please choice LSTM')
         df_train = pd.DataFrame()
