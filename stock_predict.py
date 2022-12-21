@@ -227,6 +227,7 @@ else:
         plt.plot(dataset[:])
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
-        elsif
+elif
+st.write("Please choose stock again")
 
                  
