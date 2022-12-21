@@ -229,5 +229,5 @@ else:
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
         elsif
-        st.write("Please choose stock's name"
+
                  
