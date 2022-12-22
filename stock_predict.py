@@ -39,29 +39,31 @@ selected_stock = st.text_input("Please input stock code:")
     #jsonData = json.load(data)  # getting data as json
     #dfData = data.df  # getting data as pandas DataFrame
     #dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
-loader = dt.DataLoader(symbols=selected_stock,
-                       start=START,
-                       end=TODAY,
-                       minimal=True,
-                       data_source="cafe")
-data = loader.download()   
-df = data.sort_values(by='date')
-#df.index = df['tradingDate']
-
-st.subheader("1.1 Raw data")
-st.write(df)
-st.subheader("1.2 History stock data")
-fig = plt.figure(figsize=(15, 5))
-plt.title('Close Price History ' + selected_stock)
-plt.plot(df['close'])
-plt.plot(df['close'], label='Close Price')
-plt.xlabel('Date', fontsize=20)
-plt.ylabel('Close Price vnd)', fontsize=20)
-st.pyplot(fig)
 
 if selected_stock == "":
     st.write("Please input the stock code")
 else:
+    loader = dt.DataLoader(symbols=selected_stock,
+                       start=START,
+                       end=TODAY,
+                       minimal=True,
+                       data_source="cafe")
+    data = loader.download()   
+    df = data.sort_values(by='date')
+    #df.index = df['tradingDate']
+    st.subheader("1.1 Raw data")
+    st.write(df)
+
+    st.subheader("1.2 History stock data")
+
+    fig = plt.figure(figsize=(15, 5))
+    plt.title('Close Price History ' + selected_stock)
+    plt.plot(df['close'])
+    plt.plot(df['close'], label='Close Price')
+    plt.xlabel('Date', fontsize=20)
+    plt.ylabel('Close Price vnd)', fontsize=20)
+    st.pyplot(fig)
+    
     method_predict = st.selectbox("Select the method:", ("Prophet", "LSTM"))
     n_days = st.slider("Days of prediction:", 30, 365)
     period = n_days
