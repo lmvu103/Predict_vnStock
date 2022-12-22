@@ -16,17 +16,6 @@ import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 import vnquant.data as dt
 
-START = "2010-01-01"
-TODAY = date.today().strftime('%Y-%m-%d')
-
-
-st.write("""
-# Stock Price Prediction App
-""")
-
-selected_stock = st.text_input("Please input stock code:")
-
-
 def create_data_set(_data_set, _look_back=1):
     data_x, data_y = [], []
     for i in range(len(_data_set) - _look_back - 1):
@@ -35,15 +24,16 @@ def create_data_set(_data_set, _look_back=1):
         data_y.append(_data_set[i + _look_back, 0])
     return np.array(data_x), np.array(data_y)
 
+START = "2010-01-01"
+TODAY = date.today().strftime('%Y-%m-%d')
 
-if selected_stock == "":
-    st.write("Please input the stock code")
-else:
-    method_predict = st.selectbox("Select the method:", ("Prophet", "LSTM"))
-    n_days = st.slider("Days of prediction:", 30, 365)
-    period = n_days
+st.write("""
+# Viet Nam Stock Price Prediction App
+""")
 
-    #vnd = batdata.Vnd()
+selected_stock = st.text_input("Please input stock code:")
+
+#vnd = batdata.Vnd()
     # History data load
     #data = vnd.hist(selected_stock, "close", START, TODAY)
     #jsonData = json.load(data)  # getting data as json
@@ -69,6 +59,14 @@ else:
     plt.xlabel('Date', fontsize=20)
     plt.ylabel('Close Price vnd)', fontsize=20)
     st.pyplot(fig)
+
+if selected_stock == "":
+    st.write("Please input the stock code")
+else:
+    method_predict = st.selectbox("Select the method:", ("Prophet", "LSTM"))
+    n_days = st.slider("Days of prediction:", 30, 365)
+    period = n_days
+   
     st.subheader("1.3 Predict price stock")
 
     if (st.button('Press to predict Stock')):
