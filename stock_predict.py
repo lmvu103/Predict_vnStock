@@ -140,11 +140,13 @@ else:
             plt.ylabel('loss')
             plt.xlabel('epochs')
             st.pyplot(fig3)
+            
             # creating testing dataset
             test_data = scaled_data[train_size - period:, :]
             # creating x_test and y_tets datasets
             x_test = []
             y_test = dataset[train_size:, :]
+            
             for i in range(period, len(test_data)):
                 x_test.append(test_data[i - period:i, 0])
                 # converting data to numpy array
@@ -154,6 +156,7 @@ else:
                 # get predicted price values
                 predictions = regressor.predict(x_test)
                 predictions = scaler.inverse_transform(predictions)
+                
             # plot the data
             train = data[:train_size]
             valid = data[train_size:]
