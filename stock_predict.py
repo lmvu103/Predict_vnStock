@@ -40,10 +40,10 @@ selected_stock = st.text_input("Please input stock code:")
     #dfData = data.df  # getting data as pandas DataFrame
     #dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
 loader = dt.DataLoader(symbols=selected_stock,
-           start=START,
-           end=TODAY,
-           minimal=True,
-           data_source="cafe")
+                       start=START,
+                       end=TODAY,
+                       minimal=True,
+                       data_source="cafe")
 data = loader.download()   
 df = data.sort_values(by='date')
 #df.index = df['tradingDate']
