@@ -52,7 +52,7 @@ else:
     df = data.sort_values(by='date')
     #df.index = df['tradingDate']
     st.subheader("1.1 Raw data")
-    st.table(df)
+    st.write(df)
 
     st.subheader("1.2 History stock data")
 
@@ -102,7 +102,7 @@ else:
             scaler = MinMaxScaler(feature_range=(0, 1))
             scaled_data = scaler.fit_transform(dataset)
             # splitting the data in x-train and y_train dataset
-            train_size = int(len(scaled_data) * 0.9)
+            train_size = int(len(scaled_data) * 0.8)
             test_size = len(scaled_data) - train_size
             train, test = scaled_data[0:train_size, :], scaled_data[train_size:len(scaled_data), :]
             # reshape into X=t and Y=t+1
@@ -142,7 +142,7 @@ else:
             st.pyplot(fig3)
             
             # creating testing dataset
-            test_data = scaled_data[train_size - period:, :]
+            test_data = scaled_data[(train_size - period):, :]
             # creating x_test and y_tets datasets
             x_test = []
             y_test = dataset[train_size:, :]
