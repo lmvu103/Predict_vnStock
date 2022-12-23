@@ -148,7 +148,7 @@ else:
             y_test = dataset[train_size:, :]
             
             for i in range(period, len(test_data)):
-                x_test.append(test_data[i - period:i, 0])
+                x_test.append(test_data[(i - period):, 0])
                 # converting data to numpy array
                 x_test = np.array(x_test)
                 # reshape data
