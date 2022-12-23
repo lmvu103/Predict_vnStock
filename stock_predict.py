@@ -52,7 +52,7 @@ else:
     df = data.sort_values(by='date')
     #df.index = df['tradingDate']
     st.subheader("1.1 Raw data")
-    st.write(df)
+    st.table(df)
 
     st.subheader("1.2 History stock data")
 
@@ -161,6 +161,7 @@ else:
             train = data[:train_size]
             valid = data[train_size:]
             valid['Predictions'] = predictions
+            
             # visualization
             st.subheader("Predict history price stock " + method_predict)
             fig4 = plt.figure(figsize=(15, 5))
