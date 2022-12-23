@@ -65,7 +65,7 @@ else:
     st.pyplot(fig)
     
     method_predict = st.selectbox("Select the method:", ("Prophet", "LSTM"))
-    n_days = st.slider("Days of prediction:", 30, 365)
+    n_days = st.slider("Days of prediction:", 60, 365)
     period = n_days
    
     st.subheader("1.3 Predict price stock")
@@ -148,7 +148,7 @@ else:
             y_test = dataset[train_size:, :]
             
             for i in range(period, len(test_data)):
-                x_test.append(test_data[(i - period):, 0])
+                x_test.append(test_data[(i - period):i, 0])
                 # converting data to numpy array
                 x_test = np.array(x_test)
                 # reshape data
