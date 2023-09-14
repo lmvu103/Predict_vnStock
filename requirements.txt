@@ -11,4 +11,6 @@ streamlit
 matplotlib
 scikit-learn
 altair
-prophet==1.1.2 
+holidays==0.24
+prophet==1.1.2
+
