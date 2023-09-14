@@ -78,7 +78,7 @@ else:
     if (st.button('Press to predict Stock')):
         if method_predict == "Prophet":
             #st.write('Please choice LSTM')
-            #df_train = pd.DataFrame()
+            df_train = pd.DataFrame()
             #df_train['ds'] = df['date']
             df_train['y'] = df['close']
             m = Prophet()
