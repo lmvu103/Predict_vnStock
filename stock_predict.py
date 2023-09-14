@@ -15,7 +15,7 @@ from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 import vnquant.data as dt
-st.session_state['answer'] = ''!
+st.session_state['answer'] = ''
 
 st.write(st.session_state)
 
