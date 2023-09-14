@@ -15,16 +15,6 @@ from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 import vnquant.data as dt
-st.session_state['answer'] = ''
-
-st.write(st.session_state)
-
-realans = ['', 'abc', 'edf']
-
-if  st.session_state['answer'] in realans:
-    answerStat = "correct"
-elif st.session_state['answer'] not in realans:
-    answerStat = "incorrect"
 
 def create_data_set(_data_set, _look_back=1):
     data_x, data_y = [], []
@@ -89,7 +79,7 @@ else:
         if method_predict == "Prophet":
             #st.write('Please choice LSTM')
             df_train = pd.DataFrame()
-            df_train['ds'] = df['date']
+            df_train['ds'] = df['Attributes']
             df_train['y'] = df['close']
             # m = Prophet()
             # m.fit(df_train)
