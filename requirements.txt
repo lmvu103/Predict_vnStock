@@ -11,3 +11,4 @@ streamlit
 matplotlib
 scikit-learn
 altair
+prophet==1.1.2 
