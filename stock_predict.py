@@ -8,9 +8,9 @@ import streamlit as st
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import LSTM
-# import pystan
-# from fbprophet import Prophet
-# from fbprophet.plot import plot_plotly
+import pystan
+from fbprophet import Prophet
+from fbprophet.plot import plot_plotly
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
@@ -77,7 +77,7 @@ else:
 
     if (st.button('Press to predict Stock')):
         if method_predict == "Prophet":
-            st.write('Please choice LSTM')
+            #st.write('Please choice LSTM')
             df_train = pd.DataFrame()
             df_train['ds'] = df['date']
             df_train['y'] = df['close']
