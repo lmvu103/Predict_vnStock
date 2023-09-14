@@ -39,6 +39,11 @@ selected_stock = st.text_input("Please input stock code:")
     #jsonData = json.load(data)  # getting data as json
     #dfData = data.df  # getting data as pandas DataFrame
     #dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
+# # 1. Test data loader
+# import vnquant.data as dt
+# loader = dt.DataLoader('E1VFVN30', '2021-02-01','2021-04-02', data_source='VND', minimal=True)
+# data = loader.download()
+# print(data)
 
 if selected_stock == "":
     st.write("Please input the stock code")
@@ -46,8 +51,8 @@ else:
     loader = dt.DataLoader(symbols=selected_stock,
                        start=START,
                        end=TODAY,
-                       minimal=True,
-                       data_source="cafe")
+                       data_source='VND'
+                       minimal=True")
     data = loader.download()   
     df = data.sort_values(by='date')
     #df.index = df['tradingDate']
