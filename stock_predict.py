@@ -8,7 +8,7 @@ import streamlit as st
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import LSTM
-import pystan
+#import pystan
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly
 from keras.models import Sequential
