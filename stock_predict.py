@@ -51,7 +51,7 @@ else:
     loader = dt.DataLoader(symbols=selected_stock,
                        start=START,
                        end=TODAY,
-                       data_source='VND'
+                       data_source='VND',
                        minimal=True")
     data = loader.download()   
     df = data.sort_values(by='date')
