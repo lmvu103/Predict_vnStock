@@ -81,7 +81,7 @@ else:
             df_train = pd.DataFrame()
             df_train['ds'] = df['date']
             df_train['y'] = df['close']
-            df_train = df_train.drop(index=[1,2])
+            #df_train = df_train.drop(index=[1,2])
     
             st.write(df_train)
             
