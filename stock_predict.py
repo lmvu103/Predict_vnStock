@@ -78,10 +78,10 @@ else:
     if (st.button('Press to predict Stock')):
         if method_predict == "Prophet":
             #st.write('Please choice LSTM')
-            #df_train = pd.DataFrame()
-            df_tr = df['date', 'close']
-            df_tr.reset_index()
-            df_train = df_tr.values
+            df = df.drop([2,3]) 
+            df_train = pd.DataFrame()
+            df_train['ds'] = df['data']
+            df_train['y'] = df['close']
     
             st.write(df_train)
             
