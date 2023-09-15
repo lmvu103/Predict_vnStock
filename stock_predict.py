@@ -108,9 +108,11 @@ else:
             history = regressor.fit(X_train, Y_train, epochs=5, batch_size=5, validation_data=(X_test, Y_test), callbacks=[reduce_lr], shuffle=False)
             train_predict = regressor.predict(X_train)
             test_predict = regressor.predict(X_test)
+            # invert predictions
             train_predict = scaler.inverse_transform(train_predict)
             Y_train = scaler.inverse_transform([Y_train])
             test_predict = scaler.inverse_transform(test_predict)
+            Y_test = scaler.inverse_transform([Y_test])
             # visualization
             st.subheader("Model loss")
             fig3 = plt.figure(figsize=(15, 5))
