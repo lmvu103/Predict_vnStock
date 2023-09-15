@@ -54,8 +54,8 @@ else:
                        data_source='VND',
                        minimal=True)
     data = loader.download()   
-    df =data.iloc[1:]
     df = data.sort_values(by='date')
+    df = df.drop(index=[1,2])
     
     #df.index = df['tradingDate']
     st.subheader("1.1 Raw data")
@@ -87,7 +87,7 @@ else:
             #st.write('Please choice LSTM')
             df_train = pd.DataFrame()
             df_train['ds'] = df['date','close']
-            #df_train['y'] = df['close']
+            df_train['y'] = df['close']
     
             st.write(df_train)
             
