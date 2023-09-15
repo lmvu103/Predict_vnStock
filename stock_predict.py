@@ -82,7 +82,7 @@ else:
             st.write(dataset)
             # Scale the data
             scaler = MinMaxScaler(feature_range=(0, 1))
-            scaled_data = fit_transform(np.array(dataset)
+            scaled_data = fit_transform(np.array(dataset))
             # splitting the data in x-train and y_train dataset
             train_size = int(len(scaled_data) * 0.70)
             test_size = len(scaled_data) - train_size
