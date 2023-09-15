@@ -73,11 +73,6 @@ else:
     n_days = st.slider("Days of prediction:", 60, 365)
     period = n_days
     
-    df_train = pd.DataFrame()
-    df_train = df['date','close']
-    #df_train['y'] = df['close']
-    st.write(df_train)
-    
     st.subheader("1.3 Predict price stock")
 
     if (st.button('Press to predict Stock')):
