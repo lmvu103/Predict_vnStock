@@ -76,8 +76,8 @@ else:
     period = n_days
     
     df_train = pd.DataFrame()
-    df_train['ds'] = df['date']
-    df_train['y'] = df['close']
+    df_train = df['date','close']
+    #df_train['y'] = df['close']
     st.write(df_train)
     
     st.subheader("1.3 Predict price stock")
@@ -86,8 +86,8 @@ else:
         if method_predict == "Prophet":
             #st.write('Please choice LSTM')
             df_train = pd.DataFrame()
-            df_train['ds'] = df['date']
-            df_train['y'] = df['close']
+            df_train['ds'] = df['date','close']
+            #df_train['y'] = df['close']
     
             st.write(df_train)
             
