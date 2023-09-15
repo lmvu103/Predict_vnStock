@@ -12,5 +12,4 @@ scikit-learn
 altair
 holidays==0.24
 prophet==1.1.2
-vnstock
-
+install --upgrade vnstock 
