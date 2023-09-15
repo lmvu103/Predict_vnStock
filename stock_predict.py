@@ -83,7 +83,7 @@ else:
             scaler = MinMaxScaler(feature_range=(0, 1))
             scaled_data = scaler.fit_transform(dataset)
             # splitting the data in x-train and y_train dataset
-            train_size = int(len(scaled_data) * 0.8)
+            train_size = int(len(scaled_data) * 0.70)
             test_size = len(scaled_data) - train_size
             train, test = scaled_data[0:train_size, :], scaled_data[train_size:len(scaled_data), :]
             # reshape into X=t and Y=t+1
