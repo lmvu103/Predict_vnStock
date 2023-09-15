@@ -1,6 +1,4 @@
 from datetime import date
-#import batdata
-#import json
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -14,7 +12,7 @@ from prophet.plot import plot_plotly
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
-import vnquant.data as dt
+from vnstock import * #import all functions
 
 def create_data_set(_data_set, _look_back=1):
     data_x, data_y = [], []
@@ -33,29 +31,10 @@ st.write("""
 
 selected_stock = st.text_input("Please input stock code:")
 
-#vnd = batdata.Vnd()
-    # History data load
-    #data = vnd.hist(selected_stock, "close", START, TODAY)
-    #jsonData = json.load(data)  # getting data as json
-    #dfData = data.df  # getting data as pandas DataFrame
-    #dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
-# # 1. Test data loader
-# import vnquant.data as dt
-# loader = dt.DataLoader('E1VFVN30', '2021-02-01','2021-04-02', data_source='VND', minimal=True)
-# data = loader.download()
-# print(data)
-
 if selected_stock == "":
     st.write("Please input the stock code")
 else:
-    loader = dt.DataLoader(symbols=selected_stock,
-                       start=START,
-                       end=TODAY,
-                       data_source='VND',
-                       minimal=True)
-    data = loader.download()   
-    df = data.sort_values(by='date')  
-    #df.index = df['tradingDate']
+    df=stock_historical_data(selected_stock, START, TODAY, "1D")
     st.subheader("1.1 Raw data")
     st.write(df)
 
