@@ -54,7 +54,7 @@ else:
                        data_source='VND',
                        minimal=True)
     data = loader.download()   
-    df =data.loc[2:]
+    df =data.iloc[1:]
     df = data.sort_values(by='date')
     
     #df.index = df['tradingDate']
