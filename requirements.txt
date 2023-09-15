@@ -1,4 +1,3 @@
-git+https://github.com/phamdinhkhanh/vnquant
 pip
 colorama
 tensorflow
@@ -13,4 +12,5 @@ scikit-learn
 altair
 holidays==0.24
 prophet==1.1.2
+pip install --upgrade vnstock
 
