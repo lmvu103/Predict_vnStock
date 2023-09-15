@@ -82,31 +82,30 @@ else:
             st.write(dataset)
             # Scale the data
             scaler = MinMaxScaler(feature_range=(0, 1))
-            scaled_data = fit_transform(np.array(dataset).reshape(-1,1))
+            scaled_data = fit_transform(np.array(dataset)
             # splitting the data in x-train and y_train dataset
             train_size = int(len(scaled_data) * 0.70)
             test_size = len(scaled_data) - train_size
             train, test = scaled_data[0:train_size, :], scaled_data[train_size:len(scaled_data), :]
             # reshape into X=t and Y=t+1
             look_back = period
-            X_train, Y_train, X_test, Ytest = [], [], [], []
-            X_train, Y_train = create_data_set(train, look_back)
+            X_train,Y_train,X_test,Ytest = [],[],[],[]
+            X_train,Y_train=create_data_set(train,look_back)
             X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
-            X_test, Y_test = create_data_set(test, look_back)
+            X_test,Y_test=create_data_set(test,look_back)
             X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
-            # create and fit the LSTM network regressor = Sequential()
+            # create and fit the LSTM network regressor = Sequential() 
             regressor = Sequential()
-            regressor.add(LSTM(units=50, return_sequences=True, input_shape=(X_train.shape[1], 1)))
-            regressor.add(Dropout(0.1))
-            regressor.add(LSTM(units=50, return_sequences=True))
-            regressor.add(Dropout(0.1))
-            regressor.add(LSTM(units=50))
-            regressor.add(Dropout(0.1))
-            regressor.add(Dense(units=1))
-            regressor.compile(optimizer='adam', loss='mean_squared_error')
-            reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', patience=5)
-            history = regressor.fit(X_train, Y_train, epochs=5, batch_size=5, validation_data=(X_test, Y_test), callbacks=[reduce_lr], shuffle=False)
-            train_predict = regressor.predict(X_train)
+            regressor.add(LSTM(units = 50, return_sequences = True, input_shape = (X_train.shape[1], 1)))
+            regressor.add(Dropout(0.2))
+            regressor.add(LSTM(units = 50, return_sequences = True))
+            regressor.add(Dropout(0.2))
+            regressor.add(LSTM(units = 50))
+            regressor.add(Dropout(0.2))
+            regressor.add(Dense(units = 1))
+            regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
+            reduce_lr = ReduceLROnPlateau(monitor='val_loss',patience=5)
+            history =regressor.fit(X_train, Y_train, epochs = 100, batch_size = 32,validation_data=(X_test, Y_test), callbacks=[reduce_lr],shuffle=False)
             test_predict = regressor.predict(X_test)
             # invert predictions
             train_predict = scaler.inverse_transform(train_predict)
