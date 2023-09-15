@@ -49,7 +49,7 @@ else:
     st.pyplot(fig)
     
     method_predict = st.selectbox("Select the method:", ("Prophet", "LSTM"))
-    n_days = st.slider("Days of prediction:", 60, 365)
+    n_days = st.slider("Days of prediction:", 30, 60)
     period = n_days
     
     st.subheader("1.3 Predict price stock")
@@ -76,7 +76,6 @@ else:
         
         elif method_predict == "LSTM":
             data = df['close']
-            data.reset_index()
             dataset = data.values
             st.subheader('Forecast data')
             st.write(dataset)
