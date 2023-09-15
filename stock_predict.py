@@ -78,7 +78,7 @@ else:
     if (st.button('Press to predict Stock')):
         if method_predict == "Prophet":
             #st.write('Please choice LSTM')
-            df = df.iloc[1:]
+            df = df.iloc[0:]
             st.write(df)
             df_train = pd.DataFrame()
             df_train['ds'] = df['date']
