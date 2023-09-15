@@ -79,6 +79,7 @@ else:
         if method_predict == "Prophet":
             #st.write('Please choice LSTM')
             df = df[3:]
+            st.write(df)
             df_train = pd.DataFrame()
             df_train['ds'] = df['date']
             df_train['y'] = df['close']
