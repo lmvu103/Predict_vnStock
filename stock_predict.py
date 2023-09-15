@@ -81,7 +81,8 @@ else:
             df_train = pd.DataFrame()
             df_train['ds'] = df['date']
             df_train['y'] = df['close']
-            df_train =df_train.loc[1:]
+            df_train =df_train.loc[2:]
+            st.write(df_train)
             
             m = Prophet()
             m.fit(df_train)
