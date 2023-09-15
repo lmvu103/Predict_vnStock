@@ -81,6 +81,8 @@ else:
             df_train = pd.DataFrame()
             df_train['ds'] = df['date']
             df_train['y'] = df['close']
+            df_train =df_train.loc[1:]
+            
             m = Prophet()
             m.fit(df_train)
             future = m.make_future_dataframe(periods=period)
