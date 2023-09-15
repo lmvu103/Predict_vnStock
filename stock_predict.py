@@ -76,7 +76,9 @@ else:
         
         elif method_predict == "LSTM":
             data = df['close']
+            data=data.reset_index()
             dataset = data.values
+            training_data_len = math.ceil(len(dataset)*.7)
             st.subheader('Forecast data')
             st.write(dataset)
             # Scale the data
