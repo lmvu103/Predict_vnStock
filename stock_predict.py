@@ -54,9 +54,7 @@ else:
                        data_source='VND',
                        minimal=True)
     data = loader.download()   
-    df = data.sort_values(by='date')
-    df = df.drop(index=[1,2])
-    
+    df = data.sort_values(by='date')  
     #df.index = df['tradingDate']
     st.subheader("1.1 Raw data")
     st.write(df)
@@ -86,8 +84,9 @@ else:
         if method_predict == "Prophet":
             #st.write('Please choice LSTM')
             df_train = pd.DataFrame()
-            df_train['ds'] = df['date','close']
+            df_train['ds'] = df['date']
             df_train['y'] = df['close']
+            df_train = df_train.drop(index=[1,2])
     
             st.write(df_train)
             
