@@ -18,7 +18,6 @@ from keras.callbacks import ReduceLROnPlateau, EarlyStopping, ModelCheckpoint
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.preprocessing import MinMaxScaler
-import seaborn as sns
 import matplotlib.pyplot as plt
 from vnstock import * #import all functions
 
