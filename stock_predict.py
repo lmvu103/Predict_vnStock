@@ -83,7 +83,7 @@ else:
             st.write(fig2)        
         
         elif method_predict == "LSTM":
-            data = df['close']
+            data = df.filter(['close'])
             data=data.reset_index()
             dataset = data.values
             training_data_len = math.ceil(len(dataset)*0.7)
@@ -134,7 +134,7 @@ else:
             st.pyplot(fig3)
             
             #creatinf testing dataset
-            test_data = scaled_data[training_data_len - period: , :]
+            test_data = scaled_data[training_data_len - period: , :1]
             #creating x_test and y_tets datasets
             x_test = []
             y_test = dataset[training_data_len:, :]
@@ -151,8 +151,8 @@ else:
             predictions = scaler.inverse_transform(predictions)
             
             # plot the data
-            train = dataset[:train_size]
-            valid = dataset[train_size:]
+            train = data[:train_size]
+            valid = data[train_size:]
             valid['Predictions'] = predictions
             
             # visualization
