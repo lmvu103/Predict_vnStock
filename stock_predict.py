@@ -116,7 +116,7 @@ else:
             train_predict = regressor.predict(X_train)
             test_predict = regressor.predict(X_test)
             st.write(train_predict)
-             st.write(test_predict)
+            st.write(test_predict)
             #train_predict = scaler.inverse_transform(train_predict)
             #Y_train = scaler.inverse_transform([Y_train])
             #test_predict = scaler.inverse_transform(test_predict)
