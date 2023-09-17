@@ -18,7 +18,7 @@ def create_dataset(dataset,period=1):
 # time step = 1 means xt depends on x(x-1)
 	dataX, dataY = [], []
 	for i in range(len(dataset)-period-1):
-		a = dataset[i:(i+time_step), 0]   ###i=0, 0,1,2,3-----99   100 
+		a = dataset[i:(i+period), 0]   ###i=0, 0,1,2,3-----99   100 
 		dataX.append(a)
 		dataY.append(dataset[i + period, 0])
 	return numpy.array(dataX), numpy.array(dataY)
