@@ -82,16 +82,17 @@ else:
             st.write(dataset)
             # Scale the data
             scaler = MinMaxScaler(feature_range=(0, 1))
-            scaled_data = scaler.fit_transform(np.array(df1).reshape(-1,1))
+            scaled_data = scaler.fit_transform(np.array(dataset).reshape(-1,1))
             training_size=int(len(scaled_data)*0.65)
             test_size=len(scaled_data)-training_size
             train_data,test_data=scaled_data[0:training_size,:],df1[training_size:len(scaled_data),:1]
             # reshape into X=t and Y=t+1
             look_back = period
             X_train,Y_train,X_test,Ytest = [],[],[],[]
-            X_train,Y_train=create_data_set(train,look_back)
+            # creating testing dataset
+            X_train, y_train = create_dataset(train_data, period)
+            X_test, ytest = create_dataset(test_data, period)
             X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
-            X_test,Y_test=create_data_set(test,look_back)
             X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
             # create and fit the LSTM network regressor = Sequential() 
             regressor = Sequential()
@@ -121,9 +122,6 @@ else:
             plt.xlabel('epochs')
             st.pyplot(fig3)
             
-            # creating testing dataset
-            X_train, y_train = create_dataset(train_data, period)
-            X_test, ytest = create_dataset(test_data, period)
         
             for i in range(period, len(test_data)):
                 x_test.append(test_data[(i - period):i, 0])
