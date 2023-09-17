@@ -86,6 +86,7 @@ else:
             data = df['close']
             data=data.reset_index()
             dataset = data.values
+            training_data_len = math.ceil(len(dataset)*0.7)
             st.subheader('Forecast data')
             st.write(dataset)
             scaler = MinMaxScaler(feature_range=(0,1))
