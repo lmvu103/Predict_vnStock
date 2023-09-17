@@ -3,15 +3,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import streamlit as st
-from keras.layers import Dense
-from keras.layers import Dropout
-from keras.layers import LSTM
-#import pystan
 from prophet import Prophet
 from prophet.plot import plot_plotly
-from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
+#Importing necessary libraries
+import math
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import LSTM
+from keras.layers import Dropout
+from sklearn.metrics import mean_squared_error
+from keras.callbacks import ReduceLROnPlateau, EarlyStopping, ModelCheckpoint
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+from sklearn.preprocessing import MinMaxScaler
+import seaborn as sns
+import matplotlib.pyplot as plt
 from vnstock import * #import all functions
 
 # convert an array of values into a data_set matrix def
