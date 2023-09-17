@@ -14,12 +14,13 @@ import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 from vnstock import * #import all functions
 
-def create_data_set(_data_set, _period=1):
+# convert an array of values into a data_set matrix def
+def create_data_set(_data_set, _look_back=1):
     data_x, data_y = [], []
-    for i in range(len(_data_set) - _period - 1):
-        a = _data_set[i:(i + _period), 0]
+    for i in range(len(_data_set) - _look_back - 1):
+        a = _data_set[i:(i + _look_back), 0]
         data_x.append(a)
-        data_y.append(_data_set[i + _period, 0])
+        data_y.append(_data_set[i + _look_back, 0])
     return np.array(data_x), np.array(data_y)
 
 START = "2010-01-01"
@@ -87,15 +88,11 @@ else:
             test_size=len(scaled_data)-training_size
             train_data,test_data=scaled_data[0:training_size,:],scaled_data[training_size:len(scaled_data),:1]
             # reshape into X=t and Y=t+1
-            look_back = period
-            X_train,y_train,X_test,y_test = [],[],[],[]
-            
-            # reshape into X=t and Y=t+1
-            #look_back =90
-            X_train,Y_train,X_test,Ytest = [],[],[],[]
-            X_train,Y_train=create_data_set(train,period)
+            look_back =90
+            X_train,Y_train,X_test,Y_test = [],[],[],[]
+            X_train,Y_train=create_data_set(train,look_back)
             X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
-            X_test,Y_test=create_data_set(test,period)
+            X_test,Y_test=create_data_set(test,look_back)
             X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
             
             # create and fit the LSTM network regressor = Sequential() 
