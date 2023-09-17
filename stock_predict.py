@@ -113,6 +113,7 @@ else:
             regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
             reduce_lr = ReduceLROnPlateau(monitor='val_loss',patience=5)
             history =regressor.fit(X_train, Y_train, epochs = 5, batch_size = 10,validation_data=(X_test, Y_test), callbacks=[reduce_lr],shuffle=False)
+            train_predict = regressor.predict(X_train)
             test_predict = regressor.predict(X_test)
             # invert predictions
             train_predict = scaler.inverse_transform(train_predict)
