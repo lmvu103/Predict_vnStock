@@ -14,13 +14,14 @@ import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 from vnstock import * #import all functions
 
-def create_data_set(_data_set, _look_back=1):
-    data_x, data_y = [], []
-    for i in range(len(_data_set) - _look_back - 1):
-        a = _data_set[i:(i + _look_back), 0]
-        data_x.append(a)
-        data_y.append(_data_set[i + _look_back, 0])
-    return np.array(data_x), np.array(data_y)
+def create_dataset(dataset,period=1):
+# time step = 1 means xt depends on x(x-1)
+	dataX, dataY = [], []
+	for i in range(len(dataset)-period-1):
+		a = dataset[i:(i+time_step), 0]   ###i=0, 0,1,2,3-----99   100 
+		dataX.append(a)
+		dataY.append(dataset[i + period, 0])
+	return numpy.array(dataX), numpy.array(dataY)
 
 START = "2010-01-01"
 TODAY = date.today().strftime('%Y-%m-%d')
@@ -88,7 +89,7 @@ else:
             train_data,test_data=scaled_data[0:training_size,:],scaled_data[training_size:len(scaled_data),:1]
             # reshape into X=t and Y=t+1
             look_back = period
-            X_train,Y_train,X_test,Ytest = [],[],[],[]
+            #X_train,Y_train,X_test,Ytest = [],[],[],[]
             # creating testing dataset
             X_train, y_train = create_dataset(train_data, period)
             X_test, ytest = create_dataset(test_data, period)
