@@ -89,7 +89,7 @@ else:
             train_data,test_data=scaled_data[0:training_size,:],scaled_data[training_size:len(scaled_data),:1]
             # reshape into X=t and Y=t+1
             look_back = period
-            X_train,Y_train,X_test,Ytest = [],[],[],[]
+            X_train,y_train,X_test,y_test = [],[],[],[]
             # creating testing dataset
             X_train, y_train = create_dataset(train_data, period)
             X_test, y_test = create_dataset(test_data, period)
