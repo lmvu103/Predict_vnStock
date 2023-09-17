@@ -14,14 +14,13 @@ import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 from vnstock import * #import all functions
 
-def create_dataset(dataset,period=1):
-# time step = 1 means xt depends on x(x-1)
-	dataX, dataY = [], []
-	for i in range(len(dataset)-period-1):
-		a = dataset[i:(i+period), 0]   ###i=0, 0,1,2,3-----99   100 
-		dataX.append(a)
-		dataY.append(dataset[i + period, 0])
-	return numpy.array(dataX), numpy.array(dataY)
+def create_data_set(_data_set, _period=1):
+    data_x, data_y = [], []
+    for i in range(len(_data_set) - _period - 1):
+        a = _data_set[i:(i + _period), 0]
+        data_x.append(a)
+        data_y.append(_data_set[i + _period, 0])
+    return np.array(data_x), np.array(data_y)
 
 START = "2010-01-01"
 TODAY = date.today().strftime('%Y-%m-%d')
