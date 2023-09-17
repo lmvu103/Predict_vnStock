@@ -116,12 +116,13 @@ else:
             history =regressor.fit(X_train, Y_train, epochs = 5, batch_size = 32,validation_data=(X_test, Y_test), callbacks=[reduce_lr],shuffle=False)
             train_predict = regressor.predict(X_train)
             test_predict = regressor.predict(X_test)
-            st.write(train_predict)
-            st.write(test_predict)
+            #st.write(train_predict)
+            #st.write(test_predict)
             train_predict = scaler.inverse_transform(train_predict)
             Y_train = scaler.inverse_transform([Y_train])
             test_predict = scaler.inverse_transform(test_predict)
             Y_test = scaler.inverse_transform([Y_test])
+            
             # visualization
             st.subheader("Model loss")
             fig3 = plt.figure(figsize=(15, 5))
@@ -131,6 +132,7 @@ else:
             plt.ylabel('loss')
             plt.xlabel('epochs')
             st.pyplot(fig3)
+            
             #creatinf testing dataset
             test_data = scaled_data[training_data_len - period: , :]
             #creating x_test and y_tets datasets
@@ -149,8 +151,8 @@ else:
             predictions = scaler.inverse_transform(predictions)
             
             # plot the data
-            train = data[:train_size]
-            valid = data[train_size:]
+            train = dataset[:train_size]
+            valid = dataset[train_size:]
             valid['Predictions'] = predictions
             
             # visualization
