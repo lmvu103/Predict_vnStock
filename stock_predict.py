@@ -112,10 +112,9 @@ else:
             regressor.add(Dense(units = 1))
             regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
             reduce_lr = ReduceLROnPlateau(monitor='val_loss',patience=5)
-            history =regressor.fit(X_train, Y_train, epochs = 5, batch_size = 10,validation_data=(X_test, Y_test), callbacks=[reduce_lr],shuffle=False)
+            history =regressor.fit(X_train, Y_train, epochs = 5, batch_size = 32,validation_data=(X_test, Y_test), callbacks=[reduce_lr],shuffle=False)
             train_predict = regressor.predict(X_train)
             test_predict = regressor.predict(X_test)
-            # invert predictions
             train_predict = scaler.inverse_transform(train_predict)
             Y_train = scaler.inverse_transform([Y_train])
             test_predict = scaler.inverse_transform(test_predict)
