@@ -117,10 +117,10 @@ else:
             test_predict = regressor.predict(X_test)
             st.write(train_predict)
             st.write(test_predict)
-            #train_predict = scaler.inverse_transform(train_predict)
-            #Y_train = scaler.inverse_transform([Y_train])
-            #test_predict = scaler.inverse_transform(test_predict)
-            #Y_test = scaler.inverse_transform([Y_test])
+            train_predict = scaler.inverse_transform(train_predict)
+            Y_train = scaler.inverse_transform([Y_train])
+            test_predict = scaler.inverse_transform(test_predict)
+            Y_test = scaler.inverse_transform([Y_test])
             # visualization
             st.subheader("Model loss")
             fig3 = plt.figure(figsize=(15, 5))
@@ -130,18 +130,23 @@ else:
             plt.ylabel('loss')
             plt.xlabel('epochs')
             st.pyplot(fig3)
+            #creatinf testing dataset
+            test_data = scaled_data[training_data_len - 60: , :]
+            #creating x_test and y_tets datasets
+            x_test = []
+            y_test = dataset[training_data_len:, :]
+            for i in range (60, len(test_data)):
+                x_test.append(test_data[i -60:i, 0])
+            #converting data to numpy array
+            x_test = np.array(x_test)
+
+            #reshape data
+            x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
+
+            #get predicted price values
+            predictions = regressor.predict(x_test)
+            predictions = scaler.inverse_transform(predictions)
             
-        
-            for i in range(period, len(test_data)):
-                x_test.append(test_data[(i - period):i, 0])
-                # converting data to numpy array
-                x_test = np.array(x_test)
-                # reshape data
-                x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))         
-                # get predicted price values
-                predictions = regressor.predict(x_test)
-                predictions = scaler.inverse_transform(predictions)
-                
             # plot the data
             train = data[:train_size]
             valid = data[train_size:]
