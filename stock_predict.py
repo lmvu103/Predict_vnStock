@@ -89,12 +89,11 @@ else:
             dataset = data.values
             st.subheader('Forecast data')
             st.write(dataset)
-            # Scale the data
-            scaler = MinMaxScaler(feature_range=(0, 1))
-            scaled_data = scaler.fit_transform(np.array(dataset)
-            training_size=int(len(scaled_data)*0.7)
-            test_size=len(scaled_data)-training_size
-            train_data,test_data=scaled_data[0:training_size,:],scaled_data[training_size:len(scaled_data),:1]
+            scaler = MinMaxScaler(feature_range=(0,1))
+            scaled_data = scaler.fit_transform(dataset)
+            train_size = int(len(scaled_data) * 0.70)
+            test_size = len(scaled_data) - train_size
+            train, test = scaled_data[0:train_size, :], scaled_data[train_size:len(scaled_data), :]
             # reshape into X=t and Y=t+1
             look_back =90
             X_train,Y_train,X_test,Y_test = [],[],[],[]
