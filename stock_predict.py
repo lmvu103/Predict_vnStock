@@ -180,7 +180,7 @@ else:
                 st.subheader("Predict future price stock next " + str(period))
                 fig5 = plt.figure(figsize=(15, 5))
                 plt.plot(dataset_pre)
-                plt.plot(dataset[:])
+                plt.plot(data[:])
                 plt.legend(['Prediction', 'History'], loc='upper right')
                 st.pyplot(fig5)           
 
