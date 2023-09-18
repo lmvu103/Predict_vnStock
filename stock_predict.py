@@ -134,17 +134,15 @@ else:
             
             test_data = scaled_data[training_data_len - period: , :]
             x_test = []
-            for i in range (60, len(test_data)):
-                x_test.append(test_data[i -60:i, 0])
-                
-            x_test = np.array(x_test)
+            for i in range (period, len(test_data)):
+                x_test.append(test_data[i -period:i, 0])
+                x_test = np.array(x_test)
             x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
             predictions = regressor.predict(x_test)
             predictions = scaler.inverse_transform(predictions)
-            
+            valid['Predictions'] = predictions
             train = data[:training_data_len]
             valid = data[training_data_len:]
-            valid['Predictions'] = predictions
             
             # visualization
             st.subheader("Predict history price stock " + method_predict)
