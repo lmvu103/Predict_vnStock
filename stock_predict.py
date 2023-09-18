@@ -83,26 +83,26 @@ else:
             st.write(fig2)        
         
         elif method_predict == "LSTM":
-            data = df['close']
-            data=data.reset_index()
-            dataset = data.values
-            training_data_len = math.ceil(len(dataset)*0.7)
+            data = df.filter(['close'])
+            training_data_len = math.ceil(len(data)*0.7)
             st.subheader('Forecast data')
             st.write(dataset)
+            
             scaler = MinMaxScaler(feature_range=(0,1))
-            scaled_data = scaler.fit_transform(np.array(dataset))
+            scaled_data = scaler.fit_transform(np.array(data))
+            
             train_size = int(len(scaled_data) * 0.70)
             test_size = len(scaled_data) - train_size
             train, test = scaled_data[0:train_size, :], scaled_data[train_size:len(scaled_data), :1]
-            # reshape into X=t and Y=t+1
-            look_back =90
+            
+            import numpy
+            look_back =period
             X_train,Y_train,X_test,Y_test = [],[],[],[]
             X_train,Y_train=create_data_set(train,look_back)
             X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
             X_test,Y_test=create_data_set(test,look_back)
             X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
             
-            # create and fit the LSTM network regressor = Sequential() 
             regressor = Sequential()
             regressor.add(LSTM(units = 50, return_sequences = True, input_shape = (X_train.shape[1], 1)))
             regressor.add(Dropout(0.2))
@@ -113,16 +113,15 @@ else:
             regressor.add(Dense(units = 1))
             regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
             reduce_lr = ReduceLROnPlateau(monitor='val_loss',patience=5)
-            history =regressor.fit(X_train, Y_train, epochs = 5, batch_size = 32,validation_data=(X_test, Y_test), callbacks=[reduce_lr],shuffle=False)
+            history =regressor.fit(X_train, Y_train, epochs = 10, batch_size = 32,validation_data=(X_test, Y_test), callbacks=[reduce_lr],shuffle=False)
+            
             train_predict = regressor.predict(X_train)
             test_predict = regressor.predict(X_test)
-            #st.write(train_predict)
-            #st.write(test_predict)
+            
             train_predict = scaler.inverse_transform(train_predict)
             Y_train = scaler.inverse_transform([Y_train])
             test_predict = scaler.inverse_transform(test_predict)
-            Y_test = scaler.inverse_transform([Y_test])
-            
+            Y_test = scaler.inverse_transform([Y_test])              
             # visualization
             st.subheader("Model loss")
             fig3 = plt.figure(figsize=(15, 5))
@@ -132,14 +131,19 @@ else:
             plt.ylabel('loss')
             plt.xlabel('epochs')
             st.pyplot(fig3)
-
-            #get predicted price values
-            predictions = regressor.predict(X_test)
+            
+            test_data = scaled_data[training_data_len - period: , :]
+            x_test = []
+            for i in range (60, len(test_data)):
+                x_test.append(test_data[i -60:i, 0])
+                
+            x_test = np.array(x_test)
+            x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
+            predictions = regressor.predict(x_test)
             predictions = scaler.inverse_transform(predictions)
             
-            # plot the data
-            train = data[:train_size]
-            valid = data[train_size:]
+            train = data[:training_data_len]
+            valid = data[training_data_len:]
             valid['Predictions'] = predictions
             
             # visualization
