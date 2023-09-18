@@ -84,6 +84,7 @@ else:
         
         elif method_predict == "LSTM":
             data = df.filter(['close'])
+            data = df.drop(['close'], axis=1)
             data=data.reset_index()
             dataset = data.values
             training_data_len = math.ceil(len(dataset)*0.7)
