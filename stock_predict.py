@@ -154,6 +154,7 @@ else:
             plt.xlabel('Date', fontsize=20)
             plt.ylabel('Close Price vnd)', fontsize=20)
             st.pyplot(fig4)
+            
             dataset_test = data[- period:].values
             inputs = dataset_test
             inputs = inputs.reshape(-1, 1)
@@ -175,14 +176,15 @@ else:
                 inputs = inputs.reshape(-1, 1)
                 inputs = scaler.transform(inputs)
                 i = i + 1
-                # visualization
-                dataset_pre = np.append(data['close'], dataset_test[period:])
-                st.subheader("Predict future price stock next " + str(period))
-                fig5 = plt.figure(figsize=(15, 5))
-                plt.plot(dataset_pre)
-                plt.plot(data[:])
-                plt.legend(['Prediction', 'History'], loc='upper right')
-                st.pyplot(fig5)           
+                
+            # visualization
+            dataset_pre = np.append(data['close'], dataset_test[period:])
+            st.subheader("Predict future price stock next " + str(period))
+            fig5 = plt.figure(figsize=(15, 5))
+            plt.plot(dataset_pre)
+            plt.plot(data[:])
+            plt.legend(['Prediction', 'History'], loc='upper right')
+            st.pyplot(fig5)           
 
 
                  
