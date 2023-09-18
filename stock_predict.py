@@ -83,14 +83,14 @@ else:
             st.write(fig2)        
         
         elif method_predict == "LSTM":
-            data = df(['close'])
+            data = df['close']
             data=data.reset_index()
             dataset = data.values
             training_data_len = math.ceil(len(dataset)*0.7)
             st.subheader('Forecast data')
             st.write(dataset)
             scaler = MinMaxScaler(feature_range=(0,1))
-            scaled_data = scaler.fit_transform(np.array(dataset).reshape(-1,1))
+            scaled_data = scaler.fit_transform(np.array(dataset))
             train_size = int(len(scaled_data) * 0.70)
             test_size = len(scaled_data) - train_size
             train, test = scaled_data[0:train_size, :], scaled_data[train_size:len(scaled_data), :1]
