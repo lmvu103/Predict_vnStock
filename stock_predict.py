@@ -14,8 +14,8 @@ import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 from vnstock import *
 
-START = "20100101"
-TODAY = date.today().strftime('%Y%m%d')
+START = "2021-01-01"
+TODAY = date.today().strftime('%yyyy-%mm-%dd')
 
 st.write("""
 # Stock Price Prediction App
@@ -213,6 +213,7 @@ else:
         fig2 = m.plot_components(forecast)
         st.write(fig2)
        
+
 
 
 
