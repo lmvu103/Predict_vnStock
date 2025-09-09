@@ -15,7 +15,7 @@ from sklearn.preprocessing import MinMaxScaler
 from vnstock import *
 
 START = "2021-01-01"
-TODAY = date.today().strftime('%yyyy-%mm-%dd')
+TODAY = date.today().strftime('%Y-%m-%d')
 
 st.write("""
 # Stock Price Prediction App
@@ -213,6 +213,7 @@ else:
         fig2 = m.plot_components(forecast)
         st.write(fig2)
        
+
 
 
 
