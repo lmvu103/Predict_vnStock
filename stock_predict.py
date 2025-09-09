@@ -59,7 +59,7 @@ else:
     st.subheader("1.3 Predict price stock")
 
     if method_predict == "LSTM":
-        . data = df.filter(['close'])
+        data = df.filter(['close'])
         data.reset_index()
         dataset = data.values
 
@@ -215,6 +215,7 @@ else:
         fig2 = m.plot_components(forecast)
         st.write(fig2)
        
+
 
 
 
