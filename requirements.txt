@@ -11,5 +11,7 @@ streamlit
 matplotlib
 altair
 tensorflow
+vnstock==0.0.2
+
 
 
