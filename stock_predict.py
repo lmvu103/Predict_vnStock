@@ -6,9 +6,9 @@ import streamlit as st
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import LSTM
-# import pystan
-# from fbprophet import Prophet
-# from fbprophet.plot import plot_plotly
+import pystan
+from prophet import Prophet
+from fbprophet.plot import plot_plotly
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
@@ -59,25 +59,25 @@ else:
     st.subheader("1.3 Predict price stock")
 
     if method_predict == "Prophet":
-        st.write('Please choice LSTM')
+        #st.write('Please choice LSTM')
         df_train = pd.DataFrame()
         df_train['ds'] = df['tradingDate']
         df_train['y'] = df['close']
-         m = Prophet()
-         m.fit(df_train)
-         future = m.make_future_dataframe(periods=period)
-         forecast = m.predict(future)
+        m = Prophet()
+        m.fit(df_train)
+        future = m.make_future_dataframe(periods=period)
+        forecast = m.predict(future)
         
-         st.subheader('Forecast data')
-         st.write(forecast.tail())
+        st.subheader('Forecast data')
+        st.write(forecast.tail())
         
-         st.write('Forecast data')
-         fig1 = plot_plotly(m, forecast)
-         st.plotly_chart(fig1)
+        st.write('Forecast data')
+        fig1 = plot_plotly(m, forecast)
+        st.plotly_chart(fig1)
         
-         st.write('Forecast Component')
-         fig2 = m.plot_components(forecast)
-         st.write(fig2)
+        st.write('Forecast Component')
+        fig2 = m.plot_components(forecast)
+        st.write(fig2)
     elif method_predict == "LSTM":
         data = df.filter(['close'])
         data.reset_index()
@@ -212,6 +212,7 @@ else:
         plt.plot(dataset_pre)
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+
 
 
 
