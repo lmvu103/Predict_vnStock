@@ -6,7 +6,7 @@ import streamlit as st
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.layers import LSTM
-import pystan
+import stan
 from prophet import Prophet
 from fbprophet.plot import plot_plotly
 from keras.models import Sequential
@@ -212,6 +212,7 @@ else:
         plt.plot(dataset_pre)
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+
 
 
 
