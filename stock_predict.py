@@ -41,14 +41,15 @@ else:
     n_days = st.slider("Days of prediction:", 30, 365)
     period = n_days
 
-    vnd = batdata.Vnd()
+    #vnd = batdata.Vnd()
     # History data load
-    data = vnd.hist(selected_stock, "close", START, TODAY)
-    jsonData = data.json  # getting data as json
-    dfData = data.df  # getting data as pandas DataFrame
-    dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
-    df = dfData.sort_values(by='tradingDate')
-    df.index = df['tradingDate']
+    #data = vnd.hist(selected_stock, "close", START, TODAY)
+    #jsonData = data.json  # getting data as json
+    #dfData = data.df  # getting data as pandas DataFrame
+    $dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
+    #df = dfData.sort_values(by='tradingDate')
+    #df.index = df['tradingDate']
+    df = stock_historical_data("GMD", START, TODAY, "1D")
 
     st.subheader("1.1 Raw data")
     st.write(df)
@@ -219,4 +220,5 @@ else:
         plt.plot(dataset[:])
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+
 
