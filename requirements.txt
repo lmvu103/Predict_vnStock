@@ -1,4 +1,3 @@
-batdata==0.1.0
 colorama
 keras
 matplotlib
@@ -12,6 +11,8 @@ matplotlib
 altair
 tensorflow
 vnstock==0.0.2
+prophet
+
 
 
 
