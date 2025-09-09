@@ -8,7 +8,7 @@ from keras.layers import Dropout
 from keras.layers import LSTM
 import stan
 from prophet import Prophet
-from fbprophet.plot import plot_plotly
+#from fbprophet.plot import plot_plotly
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
@@ -215,6 +215,7 @@ else:
         fig2 = m.plot_components(forecast)
         st.write(fig2)
        
+
 
 
 
