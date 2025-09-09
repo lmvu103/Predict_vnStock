@@ -58,28 +58,8 @@ else:
 
     st.subheader("1.3 Predict price stock")
 
-    if method_predict == "Prophet":
-        #st.write('Please choice LSTM')
-        df_train = pd.DataFrame()
-        df_train['ds'] = df['tradingDate']
-        df_train['y'] = df['close']
-        m = Prophet()
-        m.fit(df_train)
-        future = m.make_future_dataframe(periods=period)
-        forecast = m.predict(future)
-        
-        st.subheader('Forecast data')
-        st.write(forecast.tail())
-        
-        st.write('Forecast data')
-        fig1 = plot_plotly(m, forecast)
-        st.plotly_chart(fig1)
-        
-        st.write('Forecast Component')
-        fig2 = m.plot_components(forecast)
-        st.write(fig2)
-    elif method_predict == "LSTM":
-        data = df.filter(['close'])
+    if method_predict == "LSTM":
+        . data = df.filter(['close'])
         data.reset_index()
         dataset = data.values
 
@@ -212,6 +192,29 @@ else:
         plt.plot(dataset_pre)
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+       
+      
+    elif method_predict == "Prophet":
+          #st.write('Please choice LSTM')
+        df_train = pd.DataFrame()
+        df_train['ds'] = df['tradingDate']
+        df_train['y'] = df['close']
+        m = Prophet()
+        m.fit(df_train)
+        future = m.make_future_dataframe(periods=period)
+        forecast = m.predict(future)
+        
+        st.subheader('Forecast data')
+        st.write(forecast.tail())
+        
+        st.write('Forecast data')
+        fig1 = plot_plotly(m, forecast)
+        st.plotly_chart(fig1)
+        
+        st.write('Forecast Component')
+        fig2 = m.plot_components(forecast)
+        st.write(fig2)
+       
 
 
 
