@@ -13,7 +13,7 @@ from keras.layers import LSTM
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
-from vnstock import
+from vnstock import *
 
 START = "20100101"
 TODAY = date.today().strftime('%Y%m%d')
@@ -49,7 +49,10 @@ else:
     $dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
     #df = dfData.sort_values(by='tradingDate')
     #df.index = df['tradingDate']
-    df = stock_historical_data("GMD", START, TODAY, "1D")
+    
+    df =  stock_historical_data(symbol=selected_stock, 
+                            start_date=START, 
+                            end_date=TODAT)
 
     st.subheader("1.1 Raw data")
     st.write(df)
@@ -220,5 +223,6 @@ else:
         plt.plot(dataset[:])
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+
 
 
