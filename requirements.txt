@@ -12,6 +12,8 @@ altair
 tensorflow
 vnstock==0.0.2
 prophet
+fbprophet.plot
+
 
 
 
