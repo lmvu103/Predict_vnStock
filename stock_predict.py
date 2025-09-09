@@ -1,5 +1,4 @@
 from datetime import date
-import batdata
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -40,16 +39,7 @@ else:
     method_predict = st.selectbox("Select the method:", ("Prophet", "LSTM"))
     n_days = st.slider("Days of prediction:", 30, 365)
     period = n_days
-
-    #vnd = batdata.Vnd()
-    # History data load
-    #data = vnd.hist(selected_stock, "close", START, TODAY)
-    #jsonData = data.json  # getting data as json
-    #dfData = data.df  # getting data as pandas DataFrame
-    #dfData['tradingDate'] = pd.to_datetime(dfData['tradingDate'], format='%Y-%m-%d')  # format date date
-    #df = dfData.sort_values(by='tradingDate')
-    #df.index = df['tradingDate']
-    
+  
     df =  stock_historical_data(symbol=selected_stock, 
                             start_date=START, 
                             end_date=TODAT)
@@ -220,9 +210,9 @@ else:
         st.subheader("Predict future price stock next " + str(period))
         fig5 = plt.figure(figsize=(15, 5))
         plt.plot(dataset_pre)
-        plt.plot(dataset[:])
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+
 
 
 
