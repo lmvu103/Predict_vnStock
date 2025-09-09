@@ -13,6 +13,7 @@ from keras.layers import LSTM
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
+from vnstock import
 
 START = "20100101"
 TODAY = date.today().strftime('%Y%m%d')
@@ -218,3 +219,4 @@ else:
         plt.plot(dataset[:])
         plt.legend(['Prediction', 'History'], loc='upper right')
         st.pyplot(fig5)
+
