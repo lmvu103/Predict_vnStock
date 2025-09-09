@@ -8,7 +8,6 @@ from keras.layers import Dropout
 from keras.layers import LSTM
 import stan
 from prophet import Prophet
-from fbprophet.plot import plot_plotly
 from keras.models import Sequential
 import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
@@ -193,7 +192,6 @@ else:
        
       
     elif method_predict == "Prophet":
-          #st.write('Please choice LSTM')
         df_train = pd.DataFrame()
         df_train['ds'] = df['tradingDate']
         df_train['y'] = df['close']
@@ -206,13 +204,14 @@ else:
         st.write(forecast.tail())
         
         st.write('Forecast data')
-        fig1 = plot_plotly(m, forecast)
+        fig1 = m.plot( forecast)
         st.plotly_chart(fig1)
         
         st.write('Forecast Component')
         fig2 = m.plot_components(forecast)
         st.write(fig2)
        
+
 
 
 
