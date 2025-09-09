@@ -40,9 +40,7 @@ else:
     n_days = st.slider("Days of prediction:", 30, 365)
     period = n_days
   
-    df =  stock_historical_data(symbol=selected_stock, 
-                            start_date=START, 
-                            end_date=TODAY)
+    df =  stock_historical_data(symbol=selected_stock, start_date=START,end_date=TODAY)
 
     st.subheader("1.1 Raw data")
     st.write(df)
@@ -215,6 +213,7 @@ else:
         fig2 = m.plot_components(forecast)
         st.write(fig2)
        
+
 
 
 
