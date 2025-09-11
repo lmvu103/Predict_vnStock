@@ -13,7 +13,7 @@ import keras.callbacks
 from sklearn.preprocessing import MinMaxScaler
 from vnstock import *
 
-START = "2021-01-01"
+START = "2023-01-01"
 TODAY = date.today().strftime('%Y-%m-%d')
 
 st.write("""
@@ -211,6 +211,7 @@ else:
         fig2 = m.plot_components(forecast)
         st.write(fig2)
        
+
 
 
 
